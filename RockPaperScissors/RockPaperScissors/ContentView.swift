@@ -7,13 +7,30 @@
 
 import SwiftUI
 
+struct SmallView: View {
+    
+    var body: some View {
+        HStack(spacing: 1) {
+            Spacer()
+            VStack {
+                Image(systemName: "checkmark.circle")
+                    .font(.system(size: 60.0))
+                    .foregroundColor(.green)
+                Text("Winner")
+            }
+            
+        }
+        
+    }
+}
+
 struct SheetView: View {
     @Binding var userPick: String
     var choices: [String] = ["rock", "paper", "scissors"]
     
     @State var computerChoice = Int.random(in: 0...2)
     @State private var showingResult = true
-
+    @State var winner = "Computer"
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -21,16 +38,20 @@ struct SheetView: View {
     var body: some View {
         
         VStack() {
+            
             Text("Your Choice")
                 .font(.title)
-            Image(userPick+"-highlighted")
+            ZStack {
+                Image(userPick+"-highlighted")
+                if winner == "Computer" {
+                    SmallView()
+
+                }
+            }
             
             Text("VS")
                 .font(.title)
             Image(choices[computerChoice])
-            
-            
-            
             Button("Press to dismiss") {
                 presentationMode.wrappedValue.dismiss()
             }
@@ -43,7 +64,9 @@ struct SheetView: View {
         })
     }
     
+
     func checkWinner() -> String{
+        
         let computerPick = choices[computerChoice]
         if userPick == computerPick {
             return "Tie"
@@ -53,8 +76,6 @@ struct SheetView: View {
         }
         return "Computer"
     }
-    
-    
 }
 
 
