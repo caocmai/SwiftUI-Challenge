@@ -26,11 +26,13 @@ struct SmallView: View {
 
 struct SheetView: View {
     @Binding var userPick: String
-    var choices: [String] = ["rock", "paper", "scissors"]
-    
-    @State var computerChoice = Int.random(in: 0...2)
+    @Binding var computerPick: String
+    @Binding var winner: String
+//    var choices: [String] = ["rock", "paper", "scissors"]
+//
+//    @State var computerChoice = Int.random(in: 0...2)
     @State private var showingResult = true
-    @State var winner = "Computer"
+    
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -51,7 +53,7 @@ struct SheetView: View {
             
             Text("VS")
                 .font(.title)
-            Image(choices[computerChoice])
+            Image(computerPick)
             Button("Press to dismiss") {
                 presentationMode.wrappedValue.dismiss()
             }
@@ -59,23 +61,23 @@ struct SheetView: View {
             .padding()
             .background(Color.black)
         }
-        .alert(isPresented: $showingResult, content: {
-            Alert(title: Text("Winner is \(checkWinner())"), dismissButton: .default(Text("End")))
-        })
+//        .alert(isPresented: $showingResult, content: {
+//            Alert(title: Text("Winner is \(checkWinner())"), dismissButton: .default(Text("End")))
+//        })
     }
     
 
-    func checkWinner() -> String{
-        
-        let computerPick = choices[computerChoice]
-        if userPick == computerPick {
-            return "Tie"
-        }
-        if (userPick == "rock" && computerPick == "scissors") || (userPick == "paper" && computerPick == "rock") || (userPick == "scissors" && computerPick == "paper"){
-            return "You"
-        }
-        return "Computer"
-    }
+//    func checkWinner() -> String{
+//
+//        let computerPick = choices[computerChoice]
+//        if userPick == computerPick {
+//            return "Tie"
+//        }
+//        if (userPick == "rock" && computerPick == "scissors") || (userPick == "paper" && computerPick == "rock") || (userPick == "scissors" && computerPick == "paper"){
+//            return "You"
+//        }
+//        return "Computer"
+//    }
 }
 
 
@@ -84,12 +86,20 @@ struct ContentView: View {
     @State private var showingSheet = false
     @State private var userChoice: String = ""
     
+    var choices: [String] = ["rock", "paper", "scissors"]
+    @State var computerIndex = Int.random(in: 0...2)
+    @State private var computerChoice: String = ""
+    
+    @State private var winner: String = ""
+    
+    
     var body: some View {
         VStack(spacing: 40) {
             Button {
                 print("Rock Tapped")
                 showingSheet.toggle()
                 userChoice = "rock"
+                winner = checkWinner().rawValue
             } label: {
                 Image("rock")
             }
@@ -97,6 +107,7 @@ struct ContentView: View {
                 print("Paper Tapped")
                 showingSheet.toggle()
                 userChoice = "paper"
+                winner = checkWinner().rawValue
             } label: {
                 Image("paper")
             }
@@ -104,14 +115,28 @@ struct ContentView: View {
                 print("Scissors tapped!")
                 showingSheet.toggle()
                 userChoice = "scissors"
+                winner = checkWinner().rawValue
             } label: {
                 Image("scissors")
             }
             
             .sheet(isPresented: $showingSheet) {
-                SheetView(userPick: $userChoice)
+                
+                SheetView(userPick: $userChoice, computerPick: $computerChoice, winner: $winner)
             }
         }
+    }
+    
+    func checkWinner() -> WhoWins{
+        
+        computerChoice = choices[computerIndex]
+        if userChoice == computerChoice {
+            return WhoWins.Tie
+        }
+        if (userChoice == "rock" && computerChoice == "scissors") || (userChoice == "paper" && computerChoice == "rock") || (userChoice == "scissors" && computerChoice == "paper"){
+            return WhoWins.Player
+        }
+        return WhoWins.Computer
     }
 }
 
@@ -119,4 +144,11 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
+}
+
+
+enum WhoWins: String {
+    case Player
+    case Computer
+    case Tie
 }
