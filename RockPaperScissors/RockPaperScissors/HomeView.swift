@@ -45,6 +45,7 @@ struct ResultView: View {
     @Binding var userPick: String
     @Binding var computerPick: String
     @Binding var winner: String
+    @Binding var scores: Scores
     
     @State private var showingResult = true
     @Environment(\.presentationMode) var presentationMode
@@ -87,73 +88,73 @@ struct ResultView: View {
             .background(Color.orange)
             .cornerRadius(9)
         }
-        //        .alert(isPresented: $showingResult, content: {
-        //            Alert(title: Text("Winner is \(checkWinner())"), dismissButton: .default(Text("End")))
-        //        })
+                .alert(isPresented: $showingResult, content: {
+                    Alert(title: Text("\(winner) wins!"), message: Text("Player Score: \(scores.playerScore) \n Computer Score: \(scores.computerScore)"), dismissButton: .default(Text("End")))
+                })
     }
     
 }
 
 
-struct ContentView: View {
+struct HomeView: View {
     
     @State private var showingSheet = false
-    @State private var userChoice: String = ""
+    @State private var playerChoice: String = ""
     
     var choices: [String] = ["rock", "paper", "scissors"]
     @State var computerIndex = Int.random(in: 0...2)
     @State private var computerChoice: String = ""
     
     @State private var winner: String = ""
-    
+    @State private var scores: Scores = Scores(playerScore: 0, computerScore: 0)
     
     var body: some View {
         VStack(spacing: 40) {
             Button {
                 showingSheet.toggle()
-                userChoice = "rock"
+                playerChoice = "rock"
                 winner = checkWinner().rawValue
             } label: {
                 Image("rock")
             }
             Button {
                 showingSheet.toggle()
-                userChoice = "paper"
+                playerChoice = "paper"
                 winner = checkWinner().rawValue
             } label: {
                 Image("paper")
             }
             Button {
                 showingSheet.toggle()
-                userChoice = "scissors"
+                playerChoice = "scissors"
                 winner = checkWinner().rawValue
             } label: {
                 Image("scissors")
             }
             
             .sheet(isPresented: $showingSheet) {
-                
-                ResultView(userPick: $userChoice, computerPick: $computerChoice, winner: $winner)
+                ResultView(userPick: $playerChoice, computerPick: $computerChoice, winner: $winner, scores: $scores)
             }
         }
     }
     
-    func checkWinner() -> WhoWins{
-        
+    func checkWinner() -> WhoWins {
         computerChoice = choices[computerIndex]
-        if userChoice == computerChoice {
+        if playerChoice == computerChoice {
             return WhoWins.Tie
         }
-        if (userChoice == "rock" && computerChoice == "scissors") || (userChoice == "paper" && computerChoice == "rock") || (userChoice == "scissors" && computerChoice == "paper"){
+        if (playerChoice == "rock" && computerChoice == "scissors") || (playerChoice == "paper" && computerChoice == "rock") || (playerChoice == "scissors" && computerChoice == "paper"){
+            scores.playerScore += 1
             return WhoWins.Player
         }
+        scores.computerScore += 1
         return WhoWins.Computer
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        HomeView()
     }
 }
 
@@ -162,4 +163,9 @@ enum WhoWins: String {
     case Player
     case Computer
     case Tie
+}
+
+struct Scores {
+    var playerScore: Int
+    var computerScore: Int
 }
