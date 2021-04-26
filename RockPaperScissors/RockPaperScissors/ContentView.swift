@@ -7,7 +7,24 @@
 
 import SwiftUI
 
-struct SmallView: View {
+struct TieView: View {
+    
+    var body: some View {
+        HStack(spacing: 1) {
+            Spacer()
+            VStack {
+                Image(systemName: "equal.circle")
+                    .font(.system(size: 60.0))
+                    .foregroundColor(.yellow)
+                Text("Tie")
+            }
+            
+        }
+        
+    }
+}
+
+struct CheckMark: View {
     
     var body: some View {
         HStack(spacing: 1) {
@@ -24,60 +41,57 @@ struct SmallView: View {
     }
 }
 
-struct SheetView: View {
+struct ResultView: View {
     @Binding var userPick: String
     @Binding var computerPick: String
     @Binding var winner: String
-//    var choices: [String] = ["rock", "paper", "scissors"]
-//
-//    @State var computerChoice = Int.random(in: 0...2)
+    
     @State private var showingResult = true
-    
-    
     @Environment(\.presentationMode) var presentationMode
     
     
     var body: some View {
         
         VStack() {
-            
             Text("Your Choice")
                 .font(.title)
             ZStack {
                 Image(userPick+"-highlighted")
-                if winner == "Computer" {
-                    SmallView()
-
+                if winner == WhoWins.Player.rawValue {
+                    CheckMark() // change the contraint of this? move it away from the edge
                 }
             }
             
-            Text("VS")
-                .font(.title)
-            Image(computerPick)
-            Button("Press to dismiss") {
+            ZStack {
+                Text("VS")
+                    .font(.title)
+                if winner == WhoWins.Tie.rawValue {
+                    TieView()
+                }
+            }
+            
+            ZStack {
+                Image(computerPick)
+                if winner == WhoWins.Computer.rawValue {
+                    CheckMark()
+                }
+            }
+            
+            // how to seperate this out?
+            Button("Close") {
                 presentationMode.wrappedValue.dismiss()
             }
             .font(.title)
+            .foregroundColor(.white)
             .padding()
-            .background(Color.black)
+            .background(Color.orange)
+            .cornerRadius(9)
         }
-//        .alert(isPresented: $showingResult, content: {
-//            Alert(title: Text("Winner is \(checkWinner())"), dismissButton: .default(Text("End")))
-//        })
+        //        .alert(isPresented: $showingResult, content: {
+        //            Alert(title: Text("Winner is \(checkWinner())"), dismissButton: .default(Text("End")))
+        //        })
     }
     
-
-//    func checkWinner() -> String{
-//
-//        let computerPick = choices[computerChoice]
-//        if userPick == computerPick {
-//            return "Tie"
-//        }
-//        if (userPick == "rock" && computerPick == "scissors") || (userPick == "paper" && computerPick == "rock") || (userPick == "scissors" && computerPick == "paper"){
-//            return "You"
-//        }
-//        return "Computer"
-//    }
 }
 
 
@@ -96,7 +110,6 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 40) {
             Button {
-                print("Rock Tapped")
                 showingSheet.toggle()
                 userChoice = "rock"
                 winner = checkWinner().rawValue
@@ -104,7 +117,6 @@ struct ContentView: View {
                 Image("rock")
             }
             Button {
-                print("Paper Tapped")
                 showingSheet.toggle()
                 userChoice = "paper"
                 winner = checkWinner().rawValue
@@ -112,7 +124,6 @@ struct ContentView: View {
                 Image("paper")
             }
             Button {
-                print("Scissors tapped!")
                 showingSheet.toggle()
                 userChoice = "scissors"
                 winner = checkWinner().rawValue
@@ -122,7 +133,7 @@ struct ContentView: View {
             
             .sheet(isPresented: $showingSheet) {
                 
-                SheetView(userPick: $userChoice, computerPick: $computerChoice, winner: $winner)
+                ResultView(userPick: $userChoice, computerPick: $computerChoice, winner: $winner)
             }
         }
     }
