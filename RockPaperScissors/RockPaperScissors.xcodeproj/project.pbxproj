@@ -11,6 +11,8 @@
 		2C245BF5262FC3B40007E7A9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C245BF4262FC3B40007E7A9 /* HomeView.swift */; };
 		2C245BF7262FC3B60007E7A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C245BF6262FC3B60007E7A9 /* Assets.xcassets */; };
 		2C245BFA262FC3B60007E7A9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C245BF9262FC3B60007E7A9 /* Preview Assets.xcassets */; };
+		2CB3FE7626367DB600AE9B72 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB3FE7526367DB600AE9B72 /* ResultsView.swift */; };
+		2CB3FE7926367E0700AE9B72 /* CheckMarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB3FE7826367E0700AE9B72 /* CheckMarkView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		2C245BF6262FC3B60007E7A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C245BF9262FC3B60007E7A9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2C245BFB262FC3B60007E7A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CB3FE7526367DB600AE9B72 /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
+		2CB3FE7826367E0700AE9B72 /* CheckMarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckMarkView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,8 @@
 			children = (
 				2C245BF2262FC3B40007E7A9 /* RockPaperScissorsApp.swift */,
 				2C245BF4262FC3B40007E7A9 /* HomeView.swift */,
+				2CB3FE7826367E0700AE9B72 /* CheckMarkView.swift */,
+				2CB3FE7526367DB600AE9B72 /* ResultsView.swift */,
 				2C245BF6262FC3B60007E7A9 /* Assets.xcassets */,
 				2C245BFB262FC3B60007E7A9 /* Info.plist */,
 				2C245BF8262FC3B60007E7A9 /* Preview Content */,
@@ -139,6 +145,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C245BF5262FC3B40007E7A9 /* HomeView.swift in Sources */,
+				2CB3FE7626367DB600AE9B72 /* ResultsView.swift in Sources */,
+				2CB3FE7926367E0700AE9B72 /* CheckMarkView.swift in Sources */,
 				2C245BF3262FC3B40007E7A9 /* RockPaperScissorsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

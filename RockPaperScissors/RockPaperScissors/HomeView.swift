@@ -7,95 +7,6 @@
 
 import SwiftUI
 
-struct TieView: View {
-    
-    var body: some View {
-        HStack(spacing: 1) {
-            Spacer()
-            VStack {
-                Image(systemName: "equal.circle")
-                    .font(.system(size: 60.0))
-                    .foregroundColor(.yellow)
-                Text("Tie")
-            }
-            
-        }
-        
-    }
-}
-
-struct CheckMark: View {
-    
-    var body: some View {
-        HStack(spacing: 1) {
-            Spacer()
-            VStack {
-                Image(systemName: "checkmark.circle")
-                    .font(.system(size: 60.0))
-                    .foregroundColor(.green)
-                Text("Winner")
-            }
-            
-        }
-        
-    }
-}
-
-struct ResultView: View {
-    @Binding var userPick: String
-    @Binding var computerPick: String
-    @Binding var winner: String
-    @Binding var scores: Scores
-    
-    @State private var showingResult = true
-    @Environment(\.presentationMode) var presentationMode
-    
-    
-    var body: some View {
-        
-        VStack() {
-            Text("Your Choice")
-                .font(.title)
-            ZStack {
-                Image(userPick+"-highlighted")
-                if winner == WhoWins.Player.rawValue {
-                    CheckMark() // change the contraint of this? move it away from the edge
-                }
-            }
-            
-            ZStack {
-                Text("VS")
-                    .font(.title)
-                if winner == WhoWins.Tie.rawValue {
-                    TieView()
-                }
-            }
-            
-            ZStack {
-                Image(computerPick)
-                if winner == WhoWins.Computer.rawValue {
-                    CheckMark()
-                }
-            }
-            
-            // how to seperate this out?
-            Button("Close") {
-                presentationMode.wrappedValue.dismiss()
-            }
-            .font(.title)
-            .foregroundColor(.white)
-            .padding()
-            .background(Color.orange)
-            .cornerRadius(9)
-        }
-                .alert(isPresented: $showingResult, content: {
-                    Alert(title: Text("\(winner) wins!"), message: Text("Player Score: \(scores.playerScore) \n Computer Score: \(scores.computerScore)"), dismissButton: .default(Text("End")))
-                })
-    }
-    
-}
-
-
 struct HomeView: View {
     
     @State private var showingSheet = false
@@ -133,7 +44,7 @@ struct HomeView: View {
             }
             
             .sheet(isPresented: $showingSheet) {
-                ResultView(userPick: $playerChoice, computerPick: $computerChoice, winner: $winner, scores: $scores)
+                ResultsView(userPick: $playerChoice, computerPick: $computerChoice, winner: $winner, scores: $scores)
             }
         }
     }
