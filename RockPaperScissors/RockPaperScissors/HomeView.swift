@@ -13,7 +13,7 @@ struct HomeView: View {
     @State private var playerChoice: String = ""
     
     var choices: [String] = ["rock", "paper", "scissors"]
-    @State var computerIndex = Int.random(in: 0...2)
+    @State private var computerIndex = Int.random(in: 0...2)
     @State private var computerChoice: String = ""
     
     @State private var winner: String = ""
@@ -21,6 +21,8 @@ struct HomeView: View {
     
     var body: some View {
         VStack(spacing: 40) {
+            // Need to refactor this to use Foreach instead link here
+//            https://github.com/amelinagzz/CalculatorSwiftUIDemo/blob/main/betterCalculator/ContentView.swift
             Button {
                 showingSheet.toggle()
                 playerChoice = "rock"

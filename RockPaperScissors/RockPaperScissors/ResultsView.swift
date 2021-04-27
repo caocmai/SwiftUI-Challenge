@@ -22,10 +22,20 @@ struct ResultsView: View {
         VStack() {
             VStack(alignment: .trailing) {
                 // move this to the upper right hand side?
+                // add animations?
+                // to animation text look at
+                // https://www.hackingwithswift.com/quick-start/swiftui/how-to-animate-the-size-of-text
                 Text("Player: \(scores.playerScore) ")
                     .font(.title)
                 Text("Computer: \(scores.computerScore) ")
                     .font(.title)
+                    .scaleEffect(1)
+                    .animation(Animation.interpolatingSpring(stiffness: 50, damping: 1)
+                                .delay(2).repeatForever()
+                    )
+
+                    
+
             }
             Text("Your Choice")
             
@@ -61,9 +71,9 @@ struct ResultsView: View {
             .background(Color.orange)
             .cornerRadius(9)
         }
-        .alert(isPresented: $showingResult, content: {
-            Alert(title: Text("\(winner) wins!"), message: Text("Player Score: \(scores.playerScore) \n Computer Score: \(scores.computerScore)"), dismissButton: .default(Text("End")))
-        })
+//        .alert(isPresented: $showingResult, content: {
+//            Alert(title: Text("\(winner) wins!"), message: Text("Player Score: \(scores.playerScore) \n Computer Score: \(scores.computerScore)"), dismissButton: .default(Text("End")))
+//        })
     }
     
 }
