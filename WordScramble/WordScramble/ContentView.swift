@@ -17,6 +17,8 @@ struct ContentView: View {
     @State private var errorMessage = ""
     @State private var showingError = false
     
+    @State private var score = 0
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -25,10 +27,17 @@ struct ContentView: View {
                     .autocapitalization(.none)
                     .padding()
                 
-                List(usedWords, id: \.self) {
+                List() {
                     // automatically implicit an HView
-                    Image(systemName: "\($0.count).circle")
-                    Text($0)
+                    Text("Score: \(score)")
+                    
+                    ForEach(usedWords, id: \.self) { word in
+                        HStack{
+                        Image(systemName: "\(word.count).circle")
+                        Text(word)
+                        }
+                        
+                    }
                 }
             }
             .navigationBarTitle(rootWord)
@@ -42,6 +51,7 @@ struct ContentView: View {
                     Button("Restart") {
                         startGame()
                         usedWords = []
+                        score = 0
                     }
                 }
             }
@@ -79,6 +89,8 @@ struct ContentView: View {
             wordError(title: "Word to small", message: "Come up with a longer word.")
             return
         }
+        
+        score += answer.count
         
         usedWords.insert(answer, at: 0)
         newWord = ""
