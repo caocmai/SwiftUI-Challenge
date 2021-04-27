@@ -24,7 +24,7 @@ struct ContentView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .autocapitalization(.none)
                     .padding()
-
+                
                 List(usedWords, id: \.self) {
                     // automatically implicit an HView
                     Image(systemName: "\($0.count).circle")
@@ -36,6 +36,15 @@ struct ContentView: View {
             .alert(isPresented: $showingError) {
                 Alert(title: Text(errorTitle), message: Text(errorMessage), dismissButton: .default(Text("OK")))
             }
+            
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Restart") {
+                        startGame()
+                        usedWords = []
+                    }
+                }
+            }
         }
         
     }
@@ -43,29 +52,34 @@ struct ContentView: View {
     func addNewWord() {
         // lowercase and trim the word, to make sure we don't add duplicate words with case differences
         let answer = newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
-
+        
         // exit if the remaining string is empty
         guard answer.count > 0 else {
             return
         }
-
+        
         // player word validation
         
         guard isOriginal(word: answer) else {
             wordError(title: "Word used already", message: "Be more original")
             return
         }
-
+        
         guard isPossible(word: answer) else {
             wordError(title: "Word not recognized", message: "You can't just make them up, you know!")
             return
         }
-
+        
         guard isReal(word: answer) else {
             wordError(title: "Word not possible", message: "That isn't a real word.")
             return
         }
-
+        
+        guard lengthMoreThanTwo(word: answer) else {
+            wordError(title: "Word to small", message: "Come up with a longer word.")
+            return
+        }
+        
         usedWords.insert(answer, at: 0)
         newWord = ""
     }
@@ -77,15 +91,19 @@ struct ContentView: View {
             if let startWords = try? String(contentsOf: startWordsURL) {
                 // 3. Split the string up into an array of strings, splitting on line breaks
                 let allWords = startWords.components(separatedBy: "\n")
-
+                
                 // 4. Pick one random word, or use "silkworm" as a sensible default
                 rootWord = allWords.randomElement() ?? "silkworm"
-
+                
+                while rootWord.count < 3 {
+                    rootWord = allWords.randomElement() ?? "silkworm"
+                }
+                
                 // If we are here everything has worked, so we can exit
                 return
             }
         }
-
+        
         // If were are *here* then there was a problem – trigger a crash and report the error
         fatalError("Could not load start.txt from bundle.")
     }
@@ -97,7 +115,7 @@ struct ContentView: View {
     // check if input is a possible subword
     func isPossible(word: String) -> Bool {
         var tempWord = rootWord
-
+        
         for letter in word {
             if let pos = tempWord.firstIndex(of: letter) {
                 tempWord.remove(at: pos)
@@ -105,7 +123,7 @@ struct ContentView: View {
                 return false
             }
         }
-
+        
         return true
     }
     //  check if the possible word is a real word
@@ -113,8 +131,12 @@ struct ContentView: View {
         let checker = UITextChecker()
         let range = NSRange(location: 0, length: word.utf16.count)
         let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
-
+        
         return misspelledRange.location == NSNotFound
+    }
+    
+    func lengthMoreThanTwo(word: String) -> Bool {
+        return word.count > 2
     }
     
     
@@ -123,7 +145,7 @@ struct ContentView: View {
         errorMessage = message
         showingError = true
     }
-
+    
     
 }
 
