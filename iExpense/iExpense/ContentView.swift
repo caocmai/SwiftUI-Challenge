@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct ExpenseItem {
+struct ExpenseItem: Identifiable { // protocol to make in identifiable with uuid
+    let id = UUID() // to make each instance unique
     let name: String
     let type: String
     let amount: Int
@@ -19,11 +20,13 @@ class Expenses: ObservableObject {
 
 struct ContentView: View {
     @ObservedObject var expenses = Expenses()
+    @State private var showingAddExpense = false
+
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(expenses.items, id: \.name) { item in
+                ForEach(expenses.items) { item in
                     Text(item.name)
                 }
                 .onDelete(perform: removeItems)
@@ -32,12 +35,19 @@ struct ContentView: View {
             .navigationBarTitle("iExpense")
             .navigationBarItems(trailing:
                 Button(action: {
-                    let expense = ExpenseItem(name: "Test", type: "Personal", amount: 5)
-                    self.expenses.items.append(expense)
+//                    let expense = ExpenseItem(name: "Test", type: "Personal", amount: 5)
+//                    self.expenses.items.append(expense)
+                    self.showingAddExpense = true
+
                 }) {
                     Image(systemName: "plus")
                 }
             )
+            .sheet(isPresented: $showingAddExpense) {
+                // show an AddView here
+                AddView(expenses: self.expenses)
+
+            }
         }
     }
 }
