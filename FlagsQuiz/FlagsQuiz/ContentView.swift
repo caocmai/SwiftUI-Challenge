@@ -24,6 +24,7 @@ struct ContentView: View {
                 VStack {
                     Text("Tap the flag of")
                         .foregroundColor(.white)
+                    
                     Text(countries[correctAnswer])
                         .foregroundColor(.white)
                         .font(.largeTitle)

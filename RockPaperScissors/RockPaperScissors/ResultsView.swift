@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct ResultsView: View {
-    @Binding var userPick: String
-    @Binding var computerPick: String
-    @Binding var winner: String
+//    var userPick: String
+    @Binding var userPick: String?
+    @Binding var computerPick: String?
+    @Binding var winner: WhoWins?
     @Binding var scores: Scores
     
     @State private var showingResult = true
@@ -25,7 +26,7 @@ struct ResultsView: View {
                 // add animations?
                 // to animation text look at
                 // https://www.hackingwithswift.com/quick-start/swiftui/how-to-animate-the-size-of-text
-                Text("Player: \(scores.playerScore) ")
+                Text("Player: \(scores.playerScore)")
                     .font(.title)
                 Text("Computer: \(scores.computerScore) ")
                     .font(.title)
@@ -33,31 +34,25 @@ struct ResultsView: View {
                     .animation(Animation.interpolatingSpring(stiffness: 50, damping: 1)
                                 .delay(2).repeatForever()
                     )
-
-                    
-
             }
             Text("Your Choice")
-            
             ZStack {
-                Image(userPick+"-highlighted")
-                if winner == WhoWins.Player.rawValue {
-                    CheckMarkView(imageName: "checkmark", text: "Winner", color: Color.green) // change the contraint of this? move it away from the edge
+                Image(userPick!+"-highlighted")
+                if winner?.rawValue == WhoWins.Player.rawValue {
+                    CheckMarkView(whoWins: "You", imageName: "checkmark", text: "Win!", color: Color.green, backgroundColor: Color.green) // change the contraint of this? move it away from the edge
                 }
             }
-            
             ZStack {
                 Text("VS")
                     .font(.title)
-                if winner == WhoWins.Tie.rawValue {
-                    CheckMarkView(imageName: "equal", text: "Tie", color: Color.yellow)
+                if winner?.rawValue == WhoWins.Tie.rawValue {
+                    CheckMarkView(imageName: "equal", text: "Tie", color: Color.yellow, backgroundColor: Color.yellow)
                 }
             }
-            
             ZStack {
-                Image(computerPick)
-                if winner == WhoWins.Computer.rawValue {
-                    CheckMarkView(imageName: "checkmark", text: "Winner", color: Color.green)
+                Image(computerPick!)
+                if winner?.rawValue == WhoWins.Computer.rawValue {
+                    CheckMarkView(whoWins: "Computer", imageName: "checkmark", text: "Wins!", color: Color.green, backgroundColor: Color.red)
                 }
             }
             
