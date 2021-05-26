@@ -16,6 +16,7 @@
 		2CAB6167265E07C800997777 /* Astronaut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAB6166265E07C800997777 /* Astronaut.swift */; };
 		2CAB616A265E07DE00997777 /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAB6169265E07DE00997777 /* Bundle-Decodable.swift */; };
 		2CAB616D265E0A3400997777 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAB616C265E0A3400997777 /* Mission.swift */; };
+		2CAB6170265E100E00997777 /* MissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAB616F265E100E00997777 /* MissionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		2CAB6166265E07C800997777 /* Astronaut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Astronaut.swift; sourceTree = "<group>"; };
 		2CAB6169265E07DE00997777 /* Bundle-Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
 		2CAB616C265E0A3400997777 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
+		2CAB616F265E100E00997777 /* MissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			children = (
 				2CAB6151265E071100997777 /* MoonShotApp.swift */,
 				2CAB6153265E071100997777 /* ContentView.swift */,
+				2CAB616F265E100E00997777 /* MissionView.swift */,
 				2CAB616C265E0A3400997777 /* Mission.swift */,
 				2CAB6166265E07C800997777 /* Astronaut.swift */,
 				2CAB6169265E07DE00997777 /* Bundle-Decodable.swift */,
@@ -160,6 +163,7 @@
 				2CAB6152265E071100997777 /* MoonShotApp.swift in Sources */,
 				2CAB616D265E0A3400997777 /* Mission.swift in Sources */,
 				2CAB616A265E07DE00997777 /* Bundle-Decodable.swift in Sources */,
+				2CAB6170265E100E00997777 /* MissionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
