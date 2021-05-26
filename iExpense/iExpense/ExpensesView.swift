@@ -32,42 +32,44 @@ class Expenses: ObservableObject {
                 return
             }
         }
-
         self.items = []
     }
-    
-    
 }
 
-struct ContentView: View {
+struct ExpensesView: View {
     @ObservedObject var expenses = Expenses()
     @State private var showingAddExpense = false
-
-
+    
     var body: some View {
         NavigationView {
             List {
                 ForEach(expenses.items) { item in
-                    Text(item.name)
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(item.name)
+                                .font(.headline)
+                            Text(item.type)
+                        }
+                        
+                        Spacer()
+                        Text("$\(item.amount)")
+                    }
                 }
                 .onDelete(perform: removeItems)
-
+                
             }
             .navigationBarTitle("iExpense")
             .navigationBarItems(trailing:
-                Button(action: {
-//                    let expense = ExpenseItem(name: "Test", type: "Personal", amount: 5)
-//                    self.expenses.items.append(expense)
-                    self.showingAddExpense = true
-
-                }) {
-                    Image(systemName: "plus")
-                }
+                                    Button(action: {
+                                        //                    let expense = ExpenseItem(name: "Test", type: "Personal", amount: 5)
+                                        //                    self.expenses.items.append(expense)
+                                        self.showingAddExpense = true
+                                    }) {
+                                        Image(systemName: "plus")
+                                    }
             )
             .sheet(isPresented: $showingAddExpense) {
-                // show an AddView here
                 AddView(expenses: self.expenses)
-
             }
         }
     }
@@ -76,11 +78,11 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ExpensesView()
     }
 }
 
-extension ContentView {
+extension ExpensesView {
     func removeItems(at offsets: IndexSet) {
         expenses.items.remove(atOffsets: offsets)
     }
