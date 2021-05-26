@@ -7,15 +7,36 @@
 
 import SwiftUI
 
-struct ExpenseItem: Identifiable { // protocol to make in identifiable with uuid
-    let id = UUID() // to make each instance unique
+struct ExpenseItem: Identifiable, Codable { // protocol to make in identifiable with uuid
+    var id = UUID() // to make each instance unique
     let name: String
     let type: String
     let amount: Int
 }
 
 class Expenses: ObservableObject {
-    @Published var items = [ExpenseItem]()
+    @Published var items = [ExpenseItem]() {
+        didSet {
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(items) {
+                UserDefaults.standard.set(encoded, forKey: "Items")
+            }
+        }
+    }
+    
+    init() {
+        if let encodedItems = UserDefaults.standard.data(forKey: "Items") {
+            let decoder = JSONDecoder()
+            if let decoded = try? decoder.decode([ExpenseItem].self, from: encodedItems) {
+                self.items = decoded
+                return
+            }
+        }
+
+        self.items = []
+    }
+    
+    
 }
 
 struct ContentView: View {
