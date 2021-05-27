@@ -54,12 +54,16 @@ struct ContentView: View {
                 .fill(Color.red, style: FillStyle(eoFill: true))
             
             HStack {
-                Button(action: toSecondView) {
+                Button(action: toGradientView) {
                     Text("Gradient")
                 }
                 Text("||")
-                Button(action: toBlendEffect) {
+                Button(action: toBlendEffectView) {
                     Text("Blend Effect")
+                }
+                Text("||")
+                Button(action: toSpirographView) {
+                    Text("Spirograph")
                 }
             }
             
@@ -73,16 +77,23 @@ struct ContentView: View {
     }
     
     
-    func toSecondView() {
+    func toGradientView() {
         if let window = UIApplication.shared.windows.first {
-            window.rootViewController = UIHostingController(rootView: GridentView())
+            window.rootViewController = UIHostingController(rootView: GradientView())
             window.makeKeyAndVisible()
         }
     }
     
-    func toBlendEffect() {
+    func toBlendEffectView() {
         if let window = UIApplication.shared.windows.first {
             window.rootViewController = UIHostingController(rootView: BlendEffectView())
+            window.makeKeyAndVisible()
+        }
+    }
+    
+    func toSpirographView() {
+        if let window = UIApplication.shared.windows.first {
+            window.rootViewController = UIHostingController(rootView: SpirographView())
             window.makeKeyAndVisible()
         }
     }
