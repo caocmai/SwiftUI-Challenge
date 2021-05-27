@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BlendEffect: View {
+struct BlendEffectView: View {
     @State private var amount: CGFloat = 0.0
     
     var body: some View {
@@ -53,8 +53,8 @@ struct BlendEffect: View {
     }
 }
 
-struct BlendEffect_Previews: PreviewProvider {
+struct BlendEffectView_Previews: PreviewProvider {
     static var previews: some View {
-        BlendEffect()
+        BlendEffectView()
     }
 }

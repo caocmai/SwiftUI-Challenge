@@ -75,14 +75,14 @@ struct ContentView: View {
     
     func toSecondView() {
         if let window = UIApplication.shared.windows.first {
-            window.rootViewController = UIHostingController(rootView: SecondView())
+            window.rootViewController = UIHostingController(rootView: GridentView())
             window.makeKeyAndVisible()
         }
     }
     
     func toBlendEffect() {
         if let window = UIApplication.shared.windows.first {
-            window.rootViewController = UIHostingController(rootView: BlendEffect())
+            window.rootViewController = UIHostingController(rootView: BlendEffectView())
             window.makeKeyAndVisible()
         }
     }

@@ -39,7 +39,7 @@ struct ColorCyclingCircle: View {
 }
 
 
-struct SecondView: View {
+struct GridentView: View {
     @State private var colorCycle = 0.0
     
     var body: some View {
@@ -62,8 +62,8 @@ struct SecondView: View {
     }
 }
 
-struct SecondView_Previews: PreviewProvider {
+struct GridentView_Previews: PreviewProvider {
     static var previews: some View {
-        SecondView()
+        GridentView()
     }
 }
