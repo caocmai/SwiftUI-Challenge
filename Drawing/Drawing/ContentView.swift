@@ -53,13 +53,24 @@ struct ContentView: View {
             Flower(petalOffset: petalOffset, petalWidth: petalWidth)
                 .fill(Color.red, style: FillStyle(eoFill: true))
             
+            Button(action: toSecondView) {
+                Text("See Second View")
+            }
+            
             Text("Offset")
             Slider(value: $petalOffset, in: -40...40)
                 .padding([.horizontal, .bottom])
-            
             Text("Width")
             Slider(value: $petalWidth, in: 0...100)
                 .padding(.horizontal)
+        }
+    }
+    
+    
+    func toSecondView() {
+        if let window = UIApplication.shared.windows.first {
+            window.rootViewController = UIHostingController(rootView: SecondView())
+            window.makeKeyAndVisible()
         }
     }
 }
