@@ -53,8 +53,14 @@ struct ContentView: View {
             Flower(petalOffset: petalOffset, petalWidth: petalWidth)
                 .fill(Color.red, style: FillStyle(eoFill: true))
             
-            Button(action: toSecondView) {
-                Text("See Second View")
+            HStack {
+                Button(action: toSecondView) {
+                    Text("Gradient")
+                }
+                Text("||")
+                Button(action: toBlendEffect) {
+                    Text("Blend Effect")
+                }
             }
             
             Text("Offset")
@@ -70,6 +76,13 @@ struct ContentView: View {
     func toSecondView() {
         if let window = UIApplication.shared.windows.first {
             window.rootViewController = UIHostingController(rootView: SecondView())
+            window.makeKeyAndVisible()
+        }
+    }
+    
+    func toBlendEffect() {
+        if let window = UIApplication.shared.windows.first {
+            window.rootViewController = UIHostingController(rootView: BlendEffect())
             window.makeKeyAndVisible()
         }
     }

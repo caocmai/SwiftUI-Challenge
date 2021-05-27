@@ -12,6 +12,7 @@
 		2C6B5BE8265F4788008664EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C6B5BE7265F4788008664EC /* Assets.xcassets */; };
 		2C6B5BEB265F4788008664EC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C6B5BEA265F4788008664EC /* Preview Assets.xcassets */; };
 		2C6B5BF4265F4B99008664EC /* SecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6B5BF3265F4B99008664EC /* SecondView.swift */; };
+		2C6B5BF7265F4E7C008664EC /* BlendEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6B5BF6265F4E7C008664EC /* BlendEffect.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		2C6B5BEA265F4788008664EC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2C6B5BEC265F4788008664EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C6B5BF3265F4B99008664EC /* SecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondView.swift; sourceTree = "<group>"; };
+		2C6B5BF6265F4E7C008664EC /* BlendEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlendEffect.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				2C6B5BE3265F4787008664EC /* DrawingApp.swift */,
 				2C6B5BE5265F4787008664EC /* ContentView.swift */,
 				2C6B5BF3265F4B99008664EC /* SecondView.swift */,
+				2C6B5BF6265F4E7C008664EC /* BlendEffect.swift */,
 				2C6B5BE7265F4788008664EC /* Assets.xcassets */,
 				2C6B5BEC265F4788008664EC /* Info.plist */,
 				2C6B5BE9265F4788008664EC /* Preview Content */,
@@ -143,6 +146,7 @@
 			files = (
 				2C6B5BF4265F4B99008664EC /* SecondView.swift in Sources */,
 				2C6B5BE6265F4787008664EC /* ContentView.swift in Sources */,
+				2C6B5BF7265F4E7C008664EC /* BlendEffect.swift in Sources */,
 				2C6B5BE4265F4787008664EC /* DrawingApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
