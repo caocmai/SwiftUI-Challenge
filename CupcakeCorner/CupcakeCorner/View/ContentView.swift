@@ -42,6 +42,29 @@ struct ContentView: View {
                         Text("Number of cakes: \(order.quantity)")
                     }
                 }
+                
+                Section {
+                    // To add open and close animation effect
+                    Toggle(isOn: $order.specialRequestEnabled.animation()) {
+                        Text("Any special requests?")
+                    }
+
+                    if order.specialRequestEnabled {
+                        Toggle(isOn: $order.extraFrosting) {
+                            Text("Add extra frosting")
+                        }
+
+                        Toggle(isOn: $order.addSprinkles) {
+                            Text("Add extra sprinkles")
+                        }
+                    }
+                }
+                
+                Section {
+                    NavigationLink(destination: AddressView(order: order)) {
+                        Text("Delivery details")
+                    }
+                }
             }
             .navigationBarTitle("Cupcake Corner")
         }
