@@ -12,7 +12,6 @@ class Order: ObservableObject {
 
     @Published var type = 0
     @Published var quantity = 3
-
     @Published var specialRequestEnabled = false {
         didSet {
             if specialRequestEnabled == false {
@@ -23,4 +22,8 @@ class Order: ObservableObject {
     }
     @Published var extraFrosting = false
     @Published var addSprinkles = false
+    @Published var name = ""
+    @Published var streetAddress = ""
+    @Published var city = ""
+    @Published var zip = ""
 }
