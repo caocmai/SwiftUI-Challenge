@@ -60,7 +60,7 @@ class Order: ObservableObject, Codable {
         case type, quantity, extraFrosting, addSprinkles, name, streetAddress, city, zip
     }
     
-    // To read
+    // To read from JSON
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -76,7 +76,7 @@ class Order: ObservableObject, Codable {
         zip = try container.decode(String.self, forKey: .zip)
     }
     
-    // To save
+    // To save, or convert to JSON
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
