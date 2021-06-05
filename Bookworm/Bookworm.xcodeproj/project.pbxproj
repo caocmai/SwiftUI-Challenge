@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C11B285266B392600B99C59 /* BookDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C11B284266B392600B99C59 /* BookDetailView.swift */; };
 		2C523159266887700093196B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C523158266887700093196B /* AppDelegate.swift */; };
 		2C52315B266887700093196B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C52315A266887700093196B /* SceneDelegate.swift */; };
-		2C52315D266887700093196B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C52315C266887700093196B /* ContentView.swift */; };
+		2C52315D266887700093196B /* BookListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C52315C266887700093196B /* BookListView.swift */; };
 		2C523160266887700093196B /* Bookworm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C52315E266887700093196B /* Bookworm.xcdatamodeld */; };
 		2C523162266887700093196B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C523161266887700093196B /* Assets.xcassets */; };
 		2C523165266887700093196B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C523164266887700093196B /* Preview Assets.xcassets */; };
@@ -20,10 +21,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C11B284266B392600B99C59 /* BookDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailView.swift; sourceTree = "<group>"; };
 		2C523155266887700093196B /* Bookworm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookworm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C523158266887700093196B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C52315A266887700093196B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2C52315C266887700093196B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2C52315C266887700093196B /* BookListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListView.swift; sourceTree = "<group>"; };
 		2C52315F266887700093196B /* Bookworm.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Bookworm.xcdatamodel; sourceTree = "<group>"; };
 		2C523161266887700093196B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C523164266887700093196B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -66,11 +68,12 @@
 			children = (
 				2C523158266887700093196B /* AppDelegate.swift */,
 				2C52315A266887700093196B /* SceneDelegate.swift */,
-				2C52315C266887700093196B /* ContentView.swift */,
+				2C52315C266887700093196B /* BookListView.swift */,
 				2C9056E72669EAB200BF41FC /* EmojiRatingView.swift */,
 				2C9056E32669E61D00BF41FC /* RatingView.swift */,
 				2C9056E02669E4A500BF41FC /* AddBookView.swift */,
 				2C523161266887700093196B /* Assets.xcassets */,
+				2C11B284266B392600B99C59 /* BookDetailView.swift */,
 				2C523166266887700093196B /* LaunchScreen.storyboard */,
 				2C523169266887700093196B /* Info.plist */,
 				2C52315E266887700093196B /* Bookworm.xcdatamodeld */,
@@ -157,11 +160,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C11B285266B392600B99C59 /* BookDetailView.swift in Sources */,
 				2C523159266887700093196B /* AppDelegate.swift in Sources */,
 				2C523160266887700093196B /* Bookworm.xcdatamodeld in Sources */,
 				2C9056E82669EAB200BF41FC /* EmojiRatingView.swift in Sources */,
 				2C52315B266887700093196B /* SceneDelegate.swift in Sources */,
-				2C52315D266887700093196B /* ContentView.swift in Sources */,
+				2C52315D266887700093196B /* BookListView.swift in Sources */,
 				2C9056E12669E4A500BF41FC /* AddBookView.swift in Sources */,
 				2C9056E42669E61D00BF41FC /* RatingView.swift in Sources */,
 			);
